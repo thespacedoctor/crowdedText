@@ -249,7 +249,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
     ('index', 'crowdedText', u'crowdedText Documentation',
-     u'Dave Young', 'crowdedText', 'A small library for automatically adjusting text position in matplotlib plots to minimize overlaps (forked and modified from Phlya's adjustText)',
+     u'Dave Young', 'crowdedText', 'A small library for automatically adjusting text position in matplotlib plots to minimize overlaps (forked and modified from Phlyas adjustText)',
      'Miscellaneous'),
 ]
 
