@@ -222,6 +222,23 @@ def repel_text_from_axes(texts, ax=None, bboxes=None, renderer=None,
         bboxes = get_bboxes(texts, r, expand=expand)
     xmin, xmax = ax.get_xlim()
     ymin, ymax = ax.get_ylim()
+
+    # TEST IF INVERTED
+    xinvert = False
+    yinvert = False
+    if xmin > xmax:
+        xinvert = True
+        tmp = xmin
+        xmin = xmax
+        xmax = tmp
+    if ymin > ymax:
+        yinvert = True
+        tmp = ymin
+        ymin = ymax
+        ymax = tmp
+    print xinvert
+    print yinvert
+
     for i, bbox in enumerate(bboxes):
         x1, y1, x2, y2 = bbox.xmin, bbox.ymin, bbox.xmax, bbox.ymax
         dx, dy = 0, 0
@@ -378,7 +395,7 @@ def adjust_text(x, y, texts, ax=None, expand_text=(1.2, 1.2),
         two = (orig_xy[j][1] - cy)**2
         sep = (one + two)**0.5
 
-        print text.get_text(), sep
+        # print text.get_text(), sep
         try:
             if sep < min_arrow_sep:
                 kwargs["arrowprops"]["lw"] = 0.
