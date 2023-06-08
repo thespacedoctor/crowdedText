@@ -222,6 +222,23 @@ def repel_text_from_axes(texts, ax=None, bboxes=None, renderer=None,
         bboxes = get_bboxes(texts, r, expand=expand)
     xmin, xmax = ax.get_xlim()
     ymin, ymax = ax.get_ylim()
+
+    # TEST IF INVERTED
+    xinvert = False
+    yinvert = False
+    if xmin > xmax:
+        xinvert = True
+        tmp = xmin
+        xmin = xmax
+        xmax = tmp
+    if ymin > ymax:
+        yinvert = True
+        tmp = ymin
+        ymin = ymax
+        ymax = tmp
+    print xinvert
+    print yinvert
+
     for i, bbox in enumerate(bboxes):
         x1, y1, x2, y2 = bbox.xmin, bbox.ymin, bbox.xmax, bbox.ymax
         dx, dy = 0, 0
@@ -300,13 +317,14 @@ def adjust_text(x, y, texts, ax=None, expand_text=(1.2, 1.2),
     """
     if ax is None:
         ax = plt.gca()
-        r = ax.get_figure().canvas.get_renderer()
+    r = ax.get_figure().canvas.get_renderer()
     orig_xy = [text.get_position() for text in texts]
     orig_x = [xy[0] for xy in orig_xy]
     orig_y = [xy[1] for xy in orig_xy]
     for text in texts:
         text.set_va(va)
         text.set_ha(ha)
+        text.set_text(" " + text.get_text() + " ")
     if save_steps:
         if add_step_numbers:
             plt.title('0a')
@@ -378,7 +396,7 @@ def adjust_text(x, y, texts, ax=None, expand_text=(1.2, 1.2),
         two = (orig_xy[j][1] - cy)**2
         sep = (one + two)**0.5
 
-        print text.get_text(), sep
+        # print text.get_text(), sep
         try:
             if sep < min_arrow_sep:
                 kwargs["arrowprops"]["lw"] = 0.
