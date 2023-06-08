@@ -1,7 +1,7 @@
 Installation
 ============
 
-The easiest way to install crowdedText us to use ``pip``:
+The easiest way to install crowdedText is to use ``pip``:
 
 .. code:: bash
 

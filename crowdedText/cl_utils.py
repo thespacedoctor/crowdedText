@@ -35,8 +35,7 @@ def main(arguments=None):
         docString=__doc__,
         logLevel="DEBUG",
         options_first=False,
-        projectName="crowdedText",
-        tunnel=False
+        projectName="crowdedText"
     )
     arguments, settings, log, dbConn = su.setup()
 
